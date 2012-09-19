@@ -1,4 +1,5 @@
 package exercise2;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -7,69 +8,68 @@ public abstract class AbstractASearch {
 
 	private ArrayList<Node> closedNodes;
 	private PriorityQueue<Node> openNodes;
-	private HashMap<Node, Node> come_from;
-	public abstract Double hFun(Node n, Node goal); 
-	public abstract Double distBetween(Node par, Node child);
-	public Node goal;
-	
-	
-	
-	public AbstractASearch(Node start){
+//	private HashMap<Node, Node> come_from;
+
+	public abstract Double hFun(Node n);
+
+	// Denne skal finne avstanden mellom far og sønn
+	public abstract Double getDistBetweenParentAndChild(Node parent, Node child);
+
+	public abstract boolean isGoal(Node node);
+
+	public AbstractASearch(Node start) {
 		closedNodes = new ArrayList<Node>();
 		openNodes = new PriorityQueue<Node>();
 		openNodes.add(start);
-		start.setH(hFun(start, goal));
+		start.setH(hFun(start));
 	}
-	
-	
-	public ArrayList<Node> start(){
+
+	public ArrayList<Node> start() {
 		Node current = null;
 		Double tempG = 0.0;
-		while (!openNodes.isEmpty()){
-			
+		while (!openNodes.isEmpty()) {
+
 			// Om vi har funnet goal, rekonstruerer vi veien og retunerer den
-			if (current==goal){
+			if (isGoal(current)) {
 				return reconstuctPath(current);
 			}
 			openNodes.remove(current);
 			closedNodes.add(current);
-			
+
 			for (Node child : current.children) {
-				if (closedNodes.contains(child)){
+				if (closedNodes.contains(child)) {
 					continue;
-					//TODO Må jeg undersøke om dette er den korteste veien?
+					// TODO Må jeg undersøke om dette er den korteste veien?
 				}
-				tempG = current.getG() + distBetween(current,child);
-				
-				if (!openNodes.contains(child) || tempG < child.getF()){
-					if (!openNodes.contains(child)){
+				tempG = current.getG()
+						+ getDistBetweenParentAndChild(current, child);
+
+				if (!openNodes.contains(child) || tempG < child.getF()) {
+					if (!openNodes.contains(child)) {
 						openNodes.add(child);
 					}
-					if (child.parent != null){
+					if (child.parent != null) {
 						child.possParents.add(child.parent);
 					}
 					child.parent = current;
 					child.setG(tempG);
 					child.setH(hFun(child, goal));
-					
-					
-					
 				}
-				
-				
+
 			}
-			
 		}
 		return new ArrayList<Node>();
-			
+
 	}
-	
-	public ArrayList<Node> reconstuctPath(Node goal){
-		return new ArrayList<Node>();
+
+	public ArrayList<Node> reconstuctPath(Node current) {
+		ArrayList<Node> path = new ArrayList<Node>();
+		path.add(current);
+		while (current.parent != null) {
+			path.add(0, current.parent);
+			current = current.parent;
+		}
+		return path;
 	}
-	
-	
-	
-	
-	
+
 }

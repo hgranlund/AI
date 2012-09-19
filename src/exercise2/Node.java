@@ -2,6 +2,7 @@ package exercise2;
 
 import java.util.ArrayList;
 
+
 public class Node implements Comparable<Node>{
 
 	
@@ -16,13 +17,16 @@ public class Node implements Comparable<Node>{
 	public ArrayList<Node> children;
 	public ArrayList<Node> possParents;
 	public Node parent= null;
+	public Object state; 
 	
 	
 	
 	
-	public Node() {
+	public Node(Double g, Double h, Object state) {
 		this.children=new ArrayList<Node>();
 		this.possParents = new ArrayList<Node>();
+		this.setG(g);
+		this.setH(h);
 	}
 	
 		
