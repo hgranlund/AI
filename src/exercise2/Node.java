@@ -15,7 +15,7 @@ public class Node implements Comparable<Node>{
 	public boolean solution=true;
 	public ArrayList<Node> children;
 	public ArrayList<Node> possParents;
-	public Node parent;
+	public Node parent= null;
 	
 	
 	

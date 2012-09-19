@@ -8,7 +8,8 @@ public abstract class AbstractASearch {
 	private ArrayList<Node> closedNodes;
 	private PriorityQueue<Node> openNodes;
 	private HashMap<Node, Node> come_from;
-	public abstract Double hFun(Node n); 
+	public abstract Double hFun(Node n, Node goal); 
+	public abstract Double distBetween(Node par, Node child);
 	public Node goal;
 	
 	
@@ -17,13 +18,13 @@ public abstract class AbstractASearch {
 		closedNodes = new ArrayList<Node>();
 		openNodes = new PriorityQueue<Node>();
 		openNodes.add(start);
-		start.setH(hFun(start));
+		start.setH(hFun(start, goal));
 	}
 	
 	
 	public ArrayList<Node> start(){
 		Node current = null;
-		Double tempF = 0.0;
+		Double tempG = 0.0;
 		while (!openNodes.isEmpty()){
 			
 			// Om vi har funnet goal, rekonstruerer vi veien og retunerer den
@@ -38,8 +39,22 @@ public abstract class AbstractASearch {
 					continue;
 					//TODO Må jeg undersøke om dette er den korteste veien?
 				}
-				tempF = current.getG() + hFun(child);
+				tempG = current.getG() + distBetween(current,child);
 				
+				if (!openNodes.contains(child) || tempG < child.getF()){
+					if (!openNodes.contains(child)){
+						openNodes.add(child);
+					}
+					if (child.parent != null){
+						child.possParents.add(child.parent);
+					}
+					child.parent = current;
+					child.setG(tempG);
+					child.setH(hFun(child, goal));
+					
+					
+					
+				}
 				
 				
 			}
