@@ -1,4 +1,4 @@
-package exercise2;
+package exercise2.GenericAstar;
 
 import java.util.ArrayList;
 
@@ -8,19 +8,36 @@ public class Node implements Comparable<Node> {
 	private double h = 0;
 	private double g = 0;
 
-	// public Object state;
 	public boolean closed = true;
 	public boolean solution = true;
-	public ArrayList<Node> children;
+	private ArrayList<Node> children;
+	
+	public ArrayList<Node> getChildren() {
+		return children;
+	}
+
+	public void setChildren(ArrayList<Node> children) {
+		this.children = children;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
 	public ArrayList<Node> possParents;
 	public Node parent = null;
-	public Object state;
+	public State state;
 
-	public Node(Double g, Double h, Object state) {
+	public Node(Double g, Double h, State state) {
 		this.children = new ArrayList<Node>();
 		this.possParents = new ArrayList<Node>();
 		this.setG(g);
 		this.setH(h);
+		this.state=state;
 	}
 
 	@Override

@@ -1,46 +1,53 @@
-package exercise2;
+package exercise2.GenericAstar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public abstract class AbstractASearch {
 
 	private ArrayList<Node> closedNodes;
 	private PriorityQueue<Node> openNodes;
-//	private HashMap<Node, Node> come_from;
-
 	public abstract Double hFun(Node n);
-
+	
 	// Denne skal finne avstanden mellom far og sønn
 	public abstract Double getDistBetweenParentAndChild(Node parent, Node child);
-
 	public abstract boolean isGoal(Node node);
 
-	public AbstractASearch(Node start) {
+	public AbstractASearch() {
 		closedNodes = new ArrayList<Node>();
 		openNodes = new PriorityQueue<Node>();
-		openNodes.add(start);
-		start.setH(hFun(start));
 	}
 
-	public ArrayList<Node> start() {
+	public ArrayList<Node> start(Node start) {
+		start.setH(hFun(start));
+		openNodes.add(start);
 		Node current = null;
 		Double tempG = 0.0;
+		
+		// Så lenge vi ikke har kommet mål
 		while (!openNodes.isEmpty()) {
-
+			// Få tak i noden med lavest f verdi
+			current = openNodes.poll();
+			System.out.println(current.state);
+			
 			// Om vi har funnet goal, rekonstruerer vi veien og retunerer den
 			if (isGoal(current)) {
 				return reconstuctPath(current);
 			}
+			
+			// Fjerner noden fra opnenNodes til ClosedNodes, siden vi nå er ferdig med den;
 			openNodes.remove(current);
 			closedNodes.add(current);
 
-			for (Node child : current.children) {
+			// Går igjennom alle barna til noden og kalkulerer f-verdien
+			for (Node child : current.getChildren()) {
+
 				if (closedNodes.contains(child)) {
 					continue;
 					// TODO Må jeg undersøke om dette er den korteste veien?
 				}
+				
+				// kalkulerer en mulig g verdi
 				tempG = current.getG()
 						+ getDistBetweenParentAndChild(current, child);
 
@@ -53,7 +60,7 @@ public abstract class AbstractASearch {
 					}
 					child.parent = current;
 					child.setG(tempG);
-					child.setH(hFun(child, goal));
+					child.setH(hFun(child));
 				}
 
 			}
