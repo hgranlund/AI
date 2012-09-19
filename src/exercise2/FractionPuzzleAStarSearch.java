@@ -23,7 +23,7 @@ public class FractionPuzzleAStarSearch extends AbstractASearch {
 
 	@Override
 	public Double getDistBetweenParentAndChild(Node parent, Node child) {
-		return .0;
+		return .1;
 	}
 
 	public class State {
@@ -54,10 +54,11 @@ public class FractionPuzzleAStarSearch extends AbstractASearch {
 	}
 
 	public static void main(String[] args) {
-		// Node start = new Node(0.0, 0.0);
-		// Node goal = new Node(.0, .0);
+		
+		State initialState =new State(new ArrayList<Integer>(){1,2,3,4}, n)
+		Node start = new Node(0.0);
 		FractionPuzzleAStarSearch aStar = new FractionPuzzleAStarSearch(start,
-				goal);
+				.1/.8);
 
 	}
 
