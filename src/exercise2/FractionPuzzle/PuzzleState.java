@@ -1,6 +1,6 @@
 package exercise2.FractionPuzzle;
 
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
 
 import exercise2.GenericAstar.State;
 
