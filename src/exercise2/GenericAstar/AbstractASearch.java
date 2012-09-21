@@ -28,7 +28,7 @@ public abstract class AbstractASearch {
 		while (!openNodes.isEmpty()) {
 			// Få tak i noden med lavest f verdi
 			current = openNodes.poll();
-
+//			System.out.println("Current er : " + current.state);
 			// Om vi har funnet goal, rekonstruerer vi veien og retunerer den
 			if (isGoal(current)) {
 				return reconstuctPath(current);
@@ -77,6 +77,7 @@ public abstract class AbstractASearch {
 			path.add(0,current.parent);
 			current = current.parent;
 		}
+		path.add(0,current);
 		return path;
 	}
 

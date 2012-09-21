@@ -6,8 +6,14 @@ import exercise2.GenericAstar.Node;
 public class ChechersPuzzleAStar extends AbstractASearch {
 
 	@Override
-	public Double hFun(Node n) {
-		return (double) Math.abs(getHalfBoardSum(getBoad(n)) - getK(n));
+	public Double hFun(Node node) {
+		int[] board = getBoad(node);
+		int count = 0;
+		int k= getK(node);
+		for (int i = 0; i <= k; i++) {
+			count += board[i] *(k-i) ;
+		}
+		return (double) (- count + k*k);
 	}
 
 	@Override
@@ -18,8 +24,15 @@ public class ChechersPuzzleAStar extends AbstractASearch {
 	@Override
 	public boolean isGoal(Node node) {
 		int[] board = getBoad(node);
-		int halfBoardLength = (board.length / 2);
-		return (halfBoardLength) == getHalfBoardSum(board);
+		int count = 0;
+		
+		for (int i = 0; i <= getK(node); i++) {
+			count += board[i];
+		}
+		if (board[getK(node)] != 0){
+			return false;
+		}
+		return (getK(node)) == count;
 	}
 
 	public int getHalfBoardSum(int[] board) {
@@ -37,6 +50,6 @@ public class ChechersPuzzleAStar extends AbstractASearch {
 	}
 
 	public int getK(Node n) {
-		return (getBoad(n).length / 2) - 1;
+		return (getBoad(n).length / 2);
 	}
 }

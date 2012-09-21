@@ -4,10 +4,14 @@ import exercise2.GenericAstar.State;
 
 public class ChechersPuzzleState extends State {
 
-	// 1 = red, 0 = empty , -1 = gray
+	// 1 = #, 0 = empty , -1 = @
 	
 	public int[] board;
-
+	
+	public ChechersPuzzleState(int[] board){
+		this.board = board;
+	}
+	
 	@Override
 	public String toString() {
 		String s = "Board: ";

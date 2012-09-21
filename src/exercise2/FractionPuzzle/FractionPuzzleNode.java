@@ -2,6 +2,8 @@ package exercise2.FractionPuzzle;
 
 import java.util.ArrayList;
 
+import exercise2.ChecherPuzzle.ChechersPuzzleState;
+import exercise2.ChecherPuzzle.CheckersPuzzleNode;
 import exercise2.GenericAstar.Node;
 import exercise2.GenericAstar.State;
 
