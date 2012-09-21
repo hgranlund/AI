@@ -33,8 +33,7 @@ public class Run {
 		System.out
 				.println("Antall noder på stien.............: " + path.size());
 		System.out.println("Dette tok " + sec + " ms");
-		System.out
-		.println("====================================================== \n");
+		System.out.println("====================================================== \n");
 
 	}
 
