@@ -18,7 +18,7 @@ public class ChechersPuzzleState extends State {
 		for (int check : board) {
 			switch (check) {
 			case 1:
-				s += "#";
+				s += "+";
 				break;
 			case 0:
 				s += "_";

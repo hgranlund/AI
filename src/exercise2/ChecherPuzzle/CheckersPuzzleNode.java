@@ -2,9 +2,6 @@ package exercise2.ChecherPuzzle;
 
 import java.util.ArrayList;
 
-import com.sun.corba.se.pept.transport.InboundConnectionCache;
-import com.sun.org.apache.bcel.internal.generic.IINC;
-
 import exercise2.GenericAstar.Node;
 import exercise2.GenericAstar.State;
 
@@ -33,16 +30,14 @@ public class CheckersPuzzleNode extends Node {
 		CheckersPuzzleNode father = this;
 		int[] board = ((ChechersPuzzleState) father.state).board;
 		ArrayList<Node> children = new ArrayList<Node>();
-
 		for (int i = 0; i < board.length; i++) {
 			if (board[i] == 0) {
-				int[] iterateArray = { -2, -1, 1, 2 };
+				int[] iterateArray = { i - 2, i - 1, i + 1, i + 2 };
 				for (int j : iterateArray) {
-					int[] newBoard1 = board.clone();
-					int indexToMove = j + i;
-					if (indexToMove < board.length && indexToMove >= 0) {
-						newBoard1[i] = newBoard1[indexToMove];
-						newBoard1[indexToMove] = 0;
+					if (j < board.length && j >= 0) {
+						int[] newBoard1 = board.clone();
+						newBoard1[i] = newBoard1[j];
+						newBoard1[j] = 0;
 						ChechersPuzzleState newState = new ChechersPuzzleState(
 								newBoard1);
 						children.add(new CheckersPuzzleNode(.0, .0, newState));

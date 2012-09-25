@@ -2,26 +2,20 @@ package exercise2.FractionPuzzle;
 
 import java.util.ArrayList;
 
-import exercise2.ChecherPuzzle.ChechersPuzzleState;
-import exercise2.ChecherPuzzle.CheckersPuzzleNode;
 import exercise2.GenericAstar.Node;
 import exercise2.GenericAstar.State;
 
 public class FractionPuzzleNode extends Node {
-	
-	
 
 	public FractionPuzzleNode(Double g, Double h, State state) {
 		super(g, h, state);
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	@Override
-	public boolean equals(Object obj) {
-		return (this.getState()== ((FractionPuzzleNode) obj).getState() ); 
+
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return (this.getState() == ((FractionPuzzleNode) obj).getState());
+	}
 
 	// endrer medoden i node til å generere barn med forkjellige states.
 	// Staten blir endret vet at to tilfeldige tall bytter plass
@@ -48,12 +42,12 @@ public class FractionPuzzleNode extends Node {
 
 }
 
-
-//7329/14658 = 0.5
-//5823/17469 = 0.3333333333333333
-//4392/17568 = 0.25
-//2769/13845 = 0.2
-//5697/34182 = 0.16666666666666666
-//5274/36918 = 0.14285714285714285
-//9416/75328 = 0.125
-//8361/75249 = 0.1111111111111111
+// Resultater:
+// 7329/14658 = 0.5
+// 5823/17469 = 0.3333333333333333
+// 4392/17568 = 0.25
+// 2769/13845 = 0.2
+// 5697/34182 = 0.16666666666666666
+// 5274/36918 = 0.14285714285714285
+// 9416/75328 = 0.125
+// 8361/75249 = 0.1111111111111111

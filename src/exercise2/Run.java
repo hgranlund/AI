@@ -61,8 +61,9 @@ public class Run {
 		System.out.println("Staret FractionPuzzleA*Search med mål " + goal);
 		System.out.println("Starter søk.......");
 		ArrayList<Node> path = aStar.start(start);
-
-		System.out.println(path.get(path.size() - 1).state);
+		for (Node node : path) {
+			System.out.println(node.state);
+		}
 		long sec = (new Date().getTime() - time);
 		System.out
 				.println("Antall noder på stien.............: " + path.size());
@@ -72,7 +73,7 @@ public class Run {
 
 	}
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) {
 		while (true) {
 			System.out
 					.println(" Hvilken Algoritme vil du kjøre?  \n 1. FractionPuzzle \n 2.Checkers \n");
@@ -104,7 +105,6 @@ public class Run {
 			} catch (IOException | java.text.ParseException e) {
 				System.out.println("Prøv igjen!");
 			}
-
 
 		}
 	}

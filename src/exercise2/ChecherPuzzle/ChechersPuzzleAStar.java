@@ -9,27 +9,28 @@ public class ChechersPuzzleAStar extends AbstractASearch {
 	public Double hFun(Node node) {
 		int[] board = getBoad(node);
 		int count = 0;
-		int k= getK(node);
+		int k = getK(node);
 		for (int i = 0; i <= k; i++) {
-			count += board[i] *(k-i) ;
+			count += board[i] * (k - i) * (k - i) * (k - i);
 		}
-		return (double) (- count + k*k);
+		return (double) (-count + 0.25*k*k*(k+1)*(k+1));
 	}
 
 	@Override
 	public Double getDistBetweenParentAndChild(Node parent, Node child) {
-		return .5;
+		int k = getK(parent);
+		return (double) (k*k);
 	}
 
 	@Override
 	public boolean isGoal(Node node) {
 		int[] board = getBoad(node);
 		int count = 0;
-		
+
 		for (int i = 0; i <= getK(node); i++) {
 			count += board[i];
 		}
-		if (board[getK(node)] != 0){
+		if (board[getK(node)] != 0) {
 			return false;
 		}
 		return (getK(node)) == count;

@@ -1,12 +1,7 @@
 package exercise2.FractionPuzzle;
 
-import java.util.ArrayList;
-
 import exercise2.GenericAstar.AbstractASearch;
 import exercise2.GenericAstar.Node;
-
-
-
 
 public class FractionPuzzleAStarSearch extends AbstractASearch {
 
@@ -31,9 +26,5 @@ public class FractionPuzzleAStarSearch extends AbstractASearch {
 	public Double getDistBetweenParentAndChild(Node parent, Node child) {
 		return .0;
 	}
-	
-	
-	
-
 
 }
