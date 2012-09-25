@@ -12,24 +12,21 @@ public class CheckersPuzzleNode extends Node {
 
 	public CheckersPuzzleNode(Double g, Double h, State state) {
 		super(g, h, state);
-		// TODO Auto-generated constructor stub
 	}
 
-	
 	@Override
 	public boolean equals(Object obj) {
-		CheckersPuzzleNode node=((CheckersPuzzleNode) obj);
-		int[] objBoard=  ((ChechersPuzzleState)node.state).board;
+		CheckersPuzzleNode node = ((CheckersPuzzleNode) obj);
+		int[] objBoard = ((ChechersPuzzleState) node.state).board;
 		int[] thisBoard = ((ChechersPuzzleState) this.state).board;
 		for (int i = 0; i < objBoard.length; i++) {
-			if (!(objBoard[i] == thisBoard[i])){
+			if (!(objBoard[i] == thisBoard[i])) {
 				return false;
 			}
 		}
 		return true;
 
 	}
-
 
 	@Override
 	public ArrayList<Node> getChildren() {
@@ -42,14 +39,14 @@ public class CheckersPuzzleNode extends Node {
 				int[] iterateArray = { -2, -1, 1, 2 };
 				for (int j : iterateArray) {
 					int[] newBoard1 = board.clone();
-					int indexToMove = j+i;
-					if(indexToMove < board.length  && indexToMove >= 0){
+					int indexToMove = j + i;
+					if (indexToMove < board.length && indexToMove >= 0) {
 						newBoard1[i] = newBoard1[indexToMove];
 						newBoard1[indexToMove] = 0;
 						ChechersPuzzleState newState = new ChechersPuzzleState(
 								newBoard1);
 						children.add(new CheckersPuzzleNode(.0, .0, newState));
-						
+
 					}
 				}
 			}

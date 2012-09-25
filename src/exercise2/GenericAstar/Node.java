@@ -2,20 +2,22 @@ package exercise2.GenericAstar;
 
 import java.util.ArrayList;
 
+// Dette er en generell Node
 public class Node implements Comparable<Node> {
-
+	
 	private double f = 0;
 	private double h = 0;
 	private double g = 0;
 
 	public boolean closed = true;
-	public boolean solution = true;
+
 	private ArrayList<Node> children;
-	
+
 	public ArrayList<Node> getChildren() {
 		return children;
 	}
 
+	
 	public void setChildren(ArrayList<Node> children) {
 		this.children = children;
 	}
@@ -37,7 +39,7 @@ public class Node implements Comparable<Node> {
 		this.possParents = new ArrayList<Node>();
 		this.setG(g);
 		this.setH(h);
-		this.state=state;
+		this.state = state;
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class Node implements Comparable<Node> {
 		return h;
 	}
 
+	// Når H- verdien blir endret opptateres F-verdien automatisk
 	public void setH(double h) {
 		this.h = h;
 		f = g + h;
@@ -62,6 +65,7 @@ public class Node implements Comparable<Node> {
 		return g;
 	}
 
+	// Når G-verdien blir endret opptateres F-verdien automatisk
 	public void setG(double g) {
 		this.g = g;
 		f = g + h;
@@ -73,14 +77,6 @@ public class Node implements Comparable<Node> {
 
 	public void setClosed(boolean closed) {
 		this.closed = closed;
-	}
-
-	public boolean isSolution() {
-		return solution;
-	}
-
-	public void setSolution(boolean solution) {
-		this.solution = solution;
 	}
 
 }

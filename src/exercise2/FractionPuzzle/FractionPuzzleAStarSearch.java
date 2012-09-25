@@ -29,7 +29,7 @@ public class FractionPuzzleAStarSearch extends AbstractASearch {
 
 	@Override
 	public Double getDistBetweenParentAndChild(Node parent, Node child) {
-		return .1;
+		return .0;
 	}
 	
 	

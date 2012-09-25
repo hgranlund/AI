@@ -29,7 +29,7 @@ public class ChechersPuzzleState extends State {
 				break;
 			}
 		}
-		return s + "\n";
+		return s;
 	}
 	
 	

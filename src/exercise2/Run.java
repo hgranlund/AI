@@ -7,13 +7,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
-
 import exercise2.ChecherPuzzle.ChechersPuzzleAStar;
 import exercise2.ChecherPuzzle.ChechersPuzzleState;
 import exercise2.ChecherPuzzle.CheckersPuzzleNode;
-import exercise2.FractionPuzzle.FractionPuzzleNode;
 import exercise2.FractionPuzzle.FractionPuzzleAStarSearch;
+import exercise2.FractionPuzzle.FractionPuzzleNode;
 import exercise2.FractionPuzzle.PuzzleState;
 import exercise2.GenericAstar.Node;
 
@@ -82,7 +80,7 @@ public class Run {
 				InputStreamReader isr = new InputStreamReader(System.in);
 				BufferedReader br = new BufferedReader(isr);
 				System.out
-						.println("Velg et nummer og mål, separert med ':' ( eks 1 : 1 : 8 --> FractionPuzzle med målet 1/8 ) ");
+						.println("Velg et nummer og mål, separert med ':' ( eks 1 : 1 : 8 --> FractionPuzzle med målet 1/8 , 2:4 --> Checkers med k=4) ");
 				String[] g = br.readLine().split(":");
 
 				switch (g[0].trim()) {

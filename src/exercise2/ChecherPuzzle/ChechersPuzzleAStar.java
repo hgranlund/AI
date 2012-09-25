@@ -18,7 +18,7 @@ public class ChechersPuzzleAStar extends AbstractASearch {
 
 	@Override
 	public Double getDistBetweenParentAndChild(Node parent, Node child) {
-		return .1;
+		return .5;
 	}
 
 	@Override
