@@ -10,10 +10,10 @@ public abstract class AbstractASearch {
 
 	// De forskjellige versjonene av a* må implementere sin engen heuristic
 	// function
-	public abstract Double hFun(Node n);
+	public abstract float hFun(Node n);
 
 	// Denne skal finne avstanden mellom far og sønn
-	public abstract Double getDistBetweenParentAndChild(Node parent, Node child);
+	public abstract float getDistBetweenParentAndChild(Node parent, Node child);
 
 	// De forskjellige versjonene av a* må implementere sin engen isgoal
 	// function
@@ -29,7 +29,7 @@ public abstract class AbstractASearch {
 		start.setH(hFun(start));
 		openNodes.add(start);
 		Node current;
-		Double tempG = 0.0;
+		float tempG = 0;
 		// Så lenge vi ikke har kommet mål
 		while (!openNodes.isEmpty()) {
 			// Få tak i noden med lavest f verdi

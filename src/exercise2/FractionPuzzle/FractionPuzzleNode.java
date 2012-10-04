@@ -7,7 +7,7 @@ import exercise2.GenericAstar.State;
 
 public class FractionPuzzleNode extends Node {
 
-	public FractionPuzzleNode(Double g, Double h, State state) {
+	public FractionPuzzleNode(float g, float h, State state) {
 		super(g, h, state);
 
 	}
@@ -34,7 +34,7 @@ public class FractionPuzzleNode extends Node {
 			tA[t] = nA[n];
 			nA[n] = temp;
 			PuzzleState newState = new PuzzleState(tA, nA);
-			Node node = new FractionPuzzleNode(.0, .0, newState);
+			Node node = new FractionPuzzleNode(0, 0, newState);
 			children.add(node);
 		}
 		return children;

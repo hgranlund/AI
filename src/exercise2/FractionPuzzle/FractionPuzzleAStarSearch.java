@@ -5,16 +5,16 @@ import exercise2.GenericAstar.Node;
 
 public class FractionPuzzleAStarSearch extends AbstractASearch {
 
-	public double goalState;
+	public float goalState;
 
-	public FractionPuzzleAStarSearch(double goalState) {
+	public FractionPuzzleAStarSearch(float goalState) {
 		super();
 		this.goalState = goalState;
 	}
 
 	@Override
-	public Double hFun(Node n) {
-		return Math.abs(((PuzzleState) n.state).getSate() - goalState);
+	public float hFun(Node n) {
+		return (float) Math.abs(((PuzzleState) n.state).getSate() - goalState);
 	}
 
 	@Override
@@ -23,8 +23,8 @@ public class FractionPuzzleAStarSearch extends AbstractASearch {
 	}
 
 	@Override
-	public Double getDistBetweenParentAndChild(Node parent, Node child) {
-		return .0;
+	public float getDistBetweenParentAndChild(Node parent, Node child) {
+		return 0;
 	}
 
 }

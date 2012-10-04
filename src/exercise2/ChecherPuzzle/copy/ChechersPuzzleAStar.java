@@ -1,4 +1,4 @@
-package exercise2.ChecherPuzzle;
+package exercise2.ChecherPuzzle.copy;
 
 import exercise2.GenericAstar.AbstractASearch;
 import exercise2.GenericAstar.Node;
@@ -6,20 +6,20 @@ import exercise2.GenericAstar.Node;
 public class ChechersPuzzleAStar extends AbstractASearch {
 
 	@Override
-	public Double hFun(Node node) {
+	public float hFun(Node node) {
 		int[] board = getBoad(node);
 		int count = 0;
 		int k = getK(node);
 		for (int i = 0; i <= k; i++) {
 			count += board[i] * (k - i) * (k - i) * (k - i);
 		}
-		return (double) (-count + 0.25*k*k*(k+1)*(k+1));
+		return (float) (-count + 0.25 * k * k * (k + 1) * (k + 1));
 	}
 
 	@Override
-	public Double getDistBetweenParentAndChild(Node parent, Node child) {
+	public float getDistBetweenParentAndChild(Node parent, Node child) {
 		int k = getK(parent);
-		return (double) (k*k);
+		return (float) (k * k);
 	}
 
 	@Override

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 // Dette er en generell Node
 public class Node implements Comparable<Node> {
 	
-	private double f = 0;
-	private double h = 0;
-	private double g = 0;
+	private float f = 0;
+	private float h = 0;
+	private float g = 0;
 
 	public boolean closed = true;
 
@@ -34,7 +34,7 @@ public class Node implements Comparable<Node> {
 	public Node parent = null;
 	public State state;
 
-	public Node(Double g, Double h, State state) {
+	public Node(float g, float h, State state) {
 		this.children = new ArrayList<Node>();
 		this.possParents = new ArrayList<Node>();
 		this.setG(g);
@@ -44,29 +44,29 @@ public class Node implements Comparable<Node> {
 
 	@Override
 	public int compareTo(Node o) {
-		return Double.compare(this.f, o.getF());
+		return Float.compare(this.f, o.getF());
 	}
 
-	public double getF() {
+	public float getF() {
 		return f;
 	}
 
-	public double getH() {
+	public float getH() {
 		return h;
 	}
 
 	// Når H- verdien blir endret opptateres F-verdien automatisk
-	public void setH(double h) {
+	public void setH(float h) {
 		this.h = h;
 		f = g + h;
 	}
 
-	public double getG() {
+	public float getG() {
 		return g;
 	}
 
 	// Når G-verdien blir endret opptateres F-verdien automatisk
-	public void setG(double g) {
+	public void setG(float g) {
 		this.g = g;
 		f = g + h;
 	}

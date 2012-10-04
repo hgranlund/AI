@@ -1,4 +1,4 @@
-package exercise2.ChecherPuzzle;
+package exercise2.ChecherPuzzle.copy;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import exercise2.GenericAstar.State;
 
 public class CheckersPuzzleNode extends Node {
 
-	public CheckersPuzzleNode(Double g, Double h, State state) {
+	public CheckersPuzzleNode(float g, float h, State state) {
 		super(g, h, state);
 	}
 
@@ -40,7 +40,7 @@ public class CheckersPuzzleNode extends Node {
 						newBoard1[j] = 0;
 						ChechersPuzzleState newState = new ChechersPuzzleState(
 								newBoard1);
-						children.add(new CheckersPuzzleNode(.0, .0, newState));
+						children.add(new CheckersPuzzleNode(0, 0, newState));
 
 					}
 				}

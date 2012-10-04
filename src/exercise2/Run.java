@@ -7,9 +7,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import exercise2.ChecherPuzzle.ChechersPuzzleAStar;
-import exercise2.ChecherPuzzle.ChechersPuzzleState;
-import exercise2.ChecherPuzzle.CheckersPuzzleNode;
+import exercise2.ChecherPuzzle.copy.ChechersPuzzleAStar;
+import exercise2.ChecherPuzzle.copy.ChechersPuzzleState;
+import exercise2.ChecherPuzzle.copy.CheckersPuzzleNode;
 import exercise2.FractionPuzzle.FractionPuzzleAStarSearch;
 import exercise2.FractionPuzzle.FractionPuzzleNode;
 import exercise2.FractionPuzzle.PuzzleState;
@@ -30,7 +30,7 @@ public class Run {
 			}
 		}
 		ChechersPuzzleState initState = new ChechersPuzzleState(board);
-		Node start = new CheckersPuzzleNode(.0, .0, initState);
+		Node start = new CheckersPuzzleNode(0, 0, initState);
 		long time = new Date().getTime();
 		System.out
 				.println("======================================================");
@@ -49,12 +49,12 @@ public class Run {
 				.println("====================================================== \n");
 	}
 
-	public static void startFractionPuzzle(double goal) {
+	public static void startFractionPuzzle(float goal) {
 		FractionPuzzleAStarSearch aStar = new FractionPuzzleAStarSearch(goal);
 		int[] t = { 1, 2, 3, 4 };
 		int[] n = { 5, 6, 7, 8, 9 };
 		PuzzleState initState = new PuzzleState(t, n);
-		Node start = new FractionPuzzleNode(.0, .0, initState);
+		Node start = new FractionPuzzleNode(0, 0, initState);
 		long time = new Date().getTime();
 		System.out
 				.println("======================================================");
@@ -81,17 +81,17 @@ public class Run {
 				InputStreamReader isr = new InputStreamReader(System.in);
 				BufferedReader br = new BufferedReader(isr);
 				System.out
-						.println("Velg et nummer og mål, separert med ':' ( eks 1 : 1 : 8 --> FractionPuzzle med målet 1/8 , 2:4 --> Checkers med k=4) ");
+						.println("Velg et nummer og mål, separert med ':' ( eks 1 : 8 --> FractionPuzzle med målet 1/8 , 2:4 --> Checkers med k=4) ");
 				String[] g = br.readLine().split(":");
 
 				switch (g[0].trim()) {
 				case "1":
 					DecimalFormat df = new DecimalFormat();
-					Number tString = df.parse(g[1].trim());
-					Number nString = df.parse(g[2].trim());
-					double n = nString.doubleValue();
-					double t = tString.doubleValue();
-					startFractionPuzzle(t / n);
+					Number nString = df.parse(g[1].trim());
+
+					float n = nString.floatValue();
+					
+					startFractionPuzzle(1/ n);
 
 					break;
 				case "2":

@@ -1,4 +1,4 @@
-package exercise2.ChecherPuzzle;
+package exercise2.ChecherPuzzle.copy;
 
 import exercise2.GenericAstar.State;
 
