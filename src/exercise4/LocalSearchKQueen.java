@@ -12,7 +12,6 @@ public class LocalSearchKQueen {
 	public int[] qs;
 
 	// isQiFine[queenNumber]= True if the i'th Queen is not in any conflicts
-	public boolean[] isQiFine;
 	int k;
 
 	public LocalSearchKQueen() {
@@ -25,25 +24,25 @@ public class LocalSearchKQueen {
 			return makeBoard();
 		}
 		qs = getNewInitialBoard();
-		System.out.println("Inital");
-		printBoard(makeBoard());
-		isQiFine = new boolean[k];
+		//System.out.println("Inital");
+		//printBoard(makeBoard());
+		
 		int currentColum;
 		for (int i = 0; i < steps; i++) {
 			if (isSolution())
 				return makeBoard();
 			currentColum = (int) (Math.random() * k);
 			qs[currentColum] = rowWithMinConflicts(currentColum);
-			System.out.print("\n"+isSolution()+"\n currentColum = " +currentColum+"\n rowselected  " +qs[currentColum]);
-			printBoard(makeBoard());
+			//System.out.print("\n"+isSolution()+"\n currentColum = " +currentColum+"\n rowselected  " +qs[currentColum]);
+			//printBoard(makeBoard());
 		}
 		return null;
 	}
 
 	private boolean isSolution() {
-		for (boolean q : isQiFine) {
-			if (!q)
-				return q;
+		
+		for (int i = 0; i < qs.length; i++) {
+			if (!isQueenFine(qs[i]))return false;
 		}
 		return true;
 	}
@@ -60,9 +59,6 @@ public class LocalSearchKQueen {
 				conflicts = currentConflicts;
 			}
 		}
-		if (conflicts == 0)
-			isQiFine[colum] = true;
-		else isQiFine[colum]=false;
 		return row;
 	}
 
@@ -80,11 +76,12 @@ public class LocalSearchKQueen {
 		return conflicts;
 	}
 
-	private boolean idQueenFine(int q) {
+	private boolean isQueenFine(int q) {
 		int ij;
 		int qRow;
 		int currentRow = qs[q];
 		for (int qi = 0; qi < k; qi++) {
+			if (qi == q) continue;
 			ij = Math.abs(q - qi);
 			qRow = qs[qi];
 			if (currentRow == qRow || currentRow == qRow - ij
@@ -107,7 +104,7 @@ public class LocalSearchKQueen {
 	public int[] getNewInitialBoard() {
 		qs = new int[k];
 		for (int i = 0; i < qs.length; i++) {
-			qs[i] = random.nextInt() % k;
+			qs[i] = Math.abs(random.nextInt() % k);
 		}
 		return qs;
 	};
