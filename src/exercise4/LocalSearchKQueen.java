@@ -8,10 +8,7 @@ public class LocalSearchKQueen {
 
 	private Random random;
 	// qs represents the queens position on the board. Eks.
-	// qs[culomIndex]=RowIndex
 	public int[] qs;
-
-	// isQiFine[queenNumber]= True if the i'th Queen is not in any conflicts
 	int k;
 
 	public LocalSearchKQueen() {
@@ -31,18 +28,19 @@ public class LocalSearchKQueen {
 		for (int i = 0; i < steps; i++) {
 			if (isSolution())
 				return makeBoard();
-			currentColum = (int) (Math.random() * k);
+			currentColum = Math.abs(random.nextInt()%k);
 			qs[currentColum] = rowWithMinConflicts(currentColum);
 			//System.out.print("\n"+isSolution()+"\n currentColum = " +currentColum+"\n rowselected  " +qs[currentColum]);
 			//printBoard(makeBoard());
 		}
+		
 		return null;
 	}
 
 	private boolean isSolution() {
 		
 		for (int i = 0; i < qs.length; i++) {
-			if (!isQueenFine(qs[i]))return false;
+			if (!isQueenFine(qs[i],i))return false;
 		}
 		return true;
 	}
@@ -76,7 +74,7 @@ public class LocalSearchKQueen {
 		return conflicts;
 	}
 
-	private boolean isQueenFine(int q) {
+	private boolean isQueenFine(int q, int startFromQueen) {
 		int ij;
 		int qRow;
 		int currentRow = qs[q];
@@ -130,5 +128,4 @@ public class LocalSearchKQueen {
 				.println("=================================================================================");
 
 	}
-
 }
