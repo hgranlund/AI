@@ -37,13 +37,7 @@ public class LocalSearchKQueen {
 		return null;
 	}
 
-	private boolean isSolution() {
-		
-		for (int i = 0; i < qs.length; i++) {
-			if (!isQueenFine(qs[i],i))return false;
-		}
-		return true;
-	}
+
 
 	private int rowWithMinConflicts(int colum) {
 		int row = 0;
@@ -74,6 +68,15 @@ public class LocalSearchKQueen {
 		return conflicts;
 	}
 
+	
+	private boolean isSolution() {
+		
+		for (int i = 0; i < qs.length; i++) {
+			if (!isQueenFine(qs[i],i))return false;
+		}
+		return true;
+	}
+	
 	private boolean isQueenFine(int q, int startFromQueen) {
 		int ij;
 		int qRow;
